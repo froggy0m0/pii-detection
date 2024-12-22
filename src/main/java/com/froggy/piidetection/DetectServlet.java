@@ -1,5 +1,6 @@
 package com.froggy.piidetection;
 
+import com.froggy.piidetection.detect.DetectRRN;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "DetectServlet", value = "/detect")
 public class DetectServlet extends HttpServlet {
+
+    DetectRRN detectRRN = new DetectRRN();
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
         throws IOException, ServletException {
@@ -27,6 +30,13 @@ public class DetectServlet extends HttpServlet {
     // 개인정보 검출 로직
     private String detectPersonalInfo(String inputText) {
 
-        return "검출된 개인정보: 이메일, 전화번호";
+        boolean isDetectRRN = detectRRN.containsRRN(inputText);
+
+        return
+            "검출된 개인정보: \n\n" +
+            "주민등록번호 " + isDetectRRN + "\n\n" +
+            "핸드폰번호 " + "미구현";
     }
+
+
 }
