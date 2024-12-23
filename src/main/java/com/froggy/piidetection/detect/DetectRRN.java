@@ -67,15 +67,28 @@ public class DetectRRN {
 
     // 주민등록번호의 생년월일과 성별 코드가 유효한지 검증
     private boolean validateRRNDate(String dateStr) {
-        String birthDate = dateStr.substring(0, 6); // 생년월일 추출 
+
+        String fullDate = getFullBirthDate(dateStr);
+        if (fullDate == null) {
+            return false; // 잘못된 성별 코드
+        }
+
+
+
+        return isValidDate(fullDate);
+    }
+
+    /**
+     * 성별 코드에 따라 출생 연도 계산
+     * 19xx -> 1, 2, 5, 5
+     * 20xx -> 3, 4, 7, 8
+     */
+    private static String getFullBirthDate(String dateStr) {
+        String birthDate = dateStr.substring(0, 6); // 생년월일 추출
         char genderCode = dateStr.charAt(7); // 성별 코드 추출
 
-        /**
-         * 성별 코드에 따라 출생 연도 계산
-         * 19xx -> 1, 2, 5, 5
-         * 20xx -> 3, 4, 7, 8
-         */
         int year = Integer.parseInt(birthDate.substring(0, 2));
+
         if (
             genderCode == GenderCode.MALE_1900_1999 ||
             genderCode == GenderCode.FEMALE_1900_1999 ||
@@ -91,19 +104,21 @@ public class DetectRRN {
         ) {
             year += 2000;
         } else {
-            return false; // 잘못된 성별 코드
+            return null;
         }
 
         String fullDate = year + birthDate.substring(2);
-        return isValidDate(fullDate);
+        return fullDate;
     }
 
     // 주어진 날짜 문자열이 유효한지 확인
     public static boolean isValidDate(String dateStr) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         try {
-            LocalDate date = LocalDate.parse(dateStr, formatter);
-            return true; // 유효한 날짜
+            LocalDate birthDate = LocalDate.parse(dateStr, formatter);
+
+            // 미래 날짜인지 검증
+            return !birthDate.isAfter(LocalDate.now().plusDays(1));
         } catch (DateTimeParseException e) {
             return false; // 유효하지 않은 날짜
         }
