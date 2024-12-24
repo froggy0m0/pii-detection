@@ -13,8 +13,18 @@
 </header>
 
 <section id="result">
-    <h2>검출된 개인정보</h2>
-    <p><%= request.getAttribute("result") %></p>
+    <p>
+        <%
+            String result = (String) request.getAttribute("result");
+            String[] lines = result.split("\\n");
+            for (String line : lines) {
+                if (!line.trim().isEmpty()) {
+        %>
+                <p><%= line %></p>
+        <%      }
+            }
+        %>
+    </p>
     <a href="/">홈으로 돌아가기</a>
 </section>
 
