@@ -3,6 +3,7 @@ package com.froggy.piidetection.detect;
 import static com.froggy.piidetection.detect.constants.RegexPatternConsts.RNN_PATTERN;
 
 import com.froggy.piidetection.detect.constants.GenderCode;
+import com.froggy.piidetection.detect.dto.DetectionRRNDto;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -15,25 +16,20 @@ import java.util.regex.Pattern;
 public class DetectRRN {
 
     // 입력된 텍스트에 유효한 주민등록번호(RRN)가 포함되어 있는지 확인
-    public boolean containsRRN(String inputText) {
+    public DetectionRRNDto detect(String inputText) {
 
         List<String> extractTexts = extractMatchPattern(inputText);
         if (extractTexts.isEmpty()) {
-            return false; // 매칭된 패턴이 없다면 false 반환
+            return DetectionRRNDto.emptyData();
         }
 
         // 추출된 결과 중 날짜, 성별 코드 유효성 체크 
         List<String> filterTexts = filterValidDates(extractTexts);
         if (filterTexts.isEmpty()) {
-            return false;
+            return DetectionRRNDto.emptyData();
         }
 
-        System.out.println("검출 항목");
-        for (int i = 0 ; i < filterTexts.size(); i++) {
-            System.out.println((i + 1) + ". " + filterTexts.get(i));
-        }
-
-        return true;
+        return new DetectionRRNDto(filterTexts);
     }
 
     // 정규표현식에 매칭되는 문자열을 추출

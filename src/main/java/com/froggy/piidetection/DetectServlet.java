@@ -1,6 +1,7 @@
 package com.froggy.piidetection;
 
 import com.froggy.piidetection.detect.DetectRRN;
+import com.froggy.piidetection.detect.dto.DetectionRRNDto;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,12 +31,9 @@ public class DetectServlet extends HttpServlet {
     // 개인정보 검출 로직
     private String detectPersonalInfo(String inputText) {
 
-        boolean isDetectRRN = detectRRN.containsRRN(inputText);
+        DetectionRRNDto result = detectRRN.detect(inputText);
 
-        return
-            "검출된 개인정보: \n\n" +
-            "주민등록번호 " + isDetectRRN + "\n\n" +
-            "핸드폰번호 " + "미구현";
+        return result.toString();
     }
 
 
