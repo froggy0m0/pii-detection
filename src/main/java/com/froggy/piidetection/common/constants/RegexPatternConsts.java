@@ -1,4 +1,4 @@
-package com.froggy.piidetection.detect.constants;
+package com.froggy.piidetection.common.constants;
 
 public class RegexPatternConsts {
 

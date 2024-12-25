@@ -1,7 +1,7 @@
 package com.froggy.piidetection;
 
-import com.froggy.piidetection.detect.DetectRRN;
-import com.froggy.piidetection.detect.dto.DetectionRRNDto;
+import com.froggy.piidetection.rrn.DetectRRN;
+import com.froggy.piidetection.rrn.dto.DetectionRRNDto;
 import com.froggy.piidetection.phonenumber.DetectPhoneNumber;
 import com.froggy.piidetection.phonenumber.dto.DetectionPhoneNumberDto;
 import java.io.IOException;

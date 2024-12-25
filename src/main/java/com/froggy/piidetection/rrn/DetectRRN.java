@@ -1,9 +1,9 @@
-package com.froggy.piidetection.detect;
+package com.froggy.piidetection.rrn;
 
-import static com.froggy.piidetection.detect.constants.RegexPatternConsts.RNN_PATTERN;
+import static com.froggy.piidetection.common.constants.RegexPatternConsts.RNN_PATTERN;
 
-import com.froggy.piidetection.detect.constants.GenderCode;
-import com.froggy.piidetection.detect.dto.DetectionRRNDto;
+import com.froggy.piidetection.common.constants.GenderCode;
+import com.froggy.piidetection.rrn.dto.DetectionRRNDto;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;

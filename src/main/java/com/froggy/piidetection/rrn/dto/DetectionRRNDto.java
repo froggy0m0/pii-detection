@@ -1,4 +1,4 @@
-package com.froggy.piidetection.detect.dto;
+package com.froggy.piidetection.rrn.dto;
 
 import java.util.ArrayList;
 import java.util.List;

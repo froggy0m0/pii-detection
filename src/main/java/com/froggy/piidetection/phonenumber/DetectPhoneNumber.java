@@ -1,6 +1,6 @@
 package com.froggy.piidetection.phonenumber;
 
-import static com.froggy.piidetection.detect.constants.RegexPatternConsts.PHONE_NUMBER_PATTERN;
+import static com.froggy.piidetection.common.constants.RegexPatternConsts.PHONE_NUMBER_PATTERN;
 
 import com.froggy.piidetection.phonenumber.dto.DetectionPhoneNumberDto;
 import java.util.ArrayList;
