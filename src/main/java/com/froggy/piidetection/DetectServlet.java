@@ -2,6 +2,8 @@ package com.froggy.piidetection;
 
 import com.froggy.piidetection.detect.DetectRRN;
 import com.froggy.piidetection.detect.dto.DetectionRRNDto;
+import com.froggy.piidetection.phonenumber.DetectPhoneNumber;
+import com.froggy.piidetection.phonenumber.dto.DetectionPhoneNumberDto;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DetectServlet extends HttpServlet {
 
     DetectRRN detectRRN = new DetectRRN();
+    DetectPhoneNumber detectPhoneNumber = new DetectPhoneNumber();
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
         throws IOException, ServletException {
@@ -31,9 +34,10 @@ public class DetectServlet extends HttpServlet {
     // 개인정보 검출 로직
     private String detectPersonalInfo(String inputText) {
 
-        DetectionRRNDto result = detectRRN.detect(inputText);
+        DetectionRRNDto resultRRN = detectRRN.detect(inputText);
+        DetectionPhoneNumberDto resultPhoneNumber = detectPhoneNumber.detect(inputText);
 
-        return result.toString();
+        return resultRRN.toString() + resultPhoneNumber.toString();
     }
 
 
