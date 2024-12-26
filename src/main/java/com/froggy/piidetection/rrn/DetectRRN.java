@@ -3,6 +3,7 @@ package com.froggy.piidetection.rrn;
 import static com.froggy.piidetection.common.constants.RegexPatternConsts.RNN_PATTERN;
 
 import com.froggy.piidetection.common.constants.GenderCode;
+import com.froggy.piidetection.common.dto.DetectionDto;
 import com.froggy.piidetection.rrn.dto.DetectionRRNDto;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -20,13 +21,13 @@ public class DetectRRN {
 
         List<String> extractTexts = extractMatchPattern(inputText);
         if (extractTexts.isEmpty()) {
-            return DetectionRRNDto.emptyData();
+            return DetectionRRNDto.createEmptyData();
         }
 
         // 추출된 결과 중 날짜, 성별 코드 유효성 체크 
         List<String> filterTexts = filterValidDates(extractTexts);
         if (filterTexts.isEmpty()) {
-            return DetectionRRNDto.emptyData();
+            return DetectionRRNDto.createEmptyData();
         }
 
         return new DetectionRRNDto(filterTexts);
@@ -68,8 +69,6 @@ public class DetectRRN {
         if (fullDate == null) {
             return false; // 잘못된 성별 코드
         }
-
-
 
         return isValidDate(fullDate);
     }

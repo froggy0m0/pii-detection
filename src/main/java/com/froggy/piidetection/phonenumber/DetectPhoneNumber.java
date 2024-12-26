@@ -14,7 +14,7 @@ public class DetectPhoneNumber {
 
         List<String> extractTexts = extractMatchPattern(inputText);
         if (extractTexts.isEmpty()) {
-            return DetectionPhoneNumberDto.emptyData();
+            return DetectionPhoneNumberDto.createEmptyData();
         }
 
         return new DetectionPhoneNumberDto(extractTexts);

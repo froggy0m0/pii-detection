@@ -1,48 +1,18 @@
 package com.froggy.piidetection.phonenumber.dto;
 
+import static com.froggy.piidetection.common.constants.DetectionItemNames.PHONE_NUMBER_NAME;
+
+import com.froggy.piidetection.common.dto.DetectionDto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetectionPhoneNumberDto {
-
-    String name;
-    int count;
-    List<String> detectedItems;
+public class DetectionPhoneNumberDto extends DetectionDto {
 
     public DetectionPhoneNumberDto(List<String> detectedItems) {
-        this.name = "핸드폰번호";
-        this.count = detectedItems.size();
-        this.detectedItems = detectedItems;
+        super(PHONE_NUMBER_NAME, detectedItems);
     }
 
-    public static DetectionPhoneNumberDto emptyData() {
+    public static DetectionPhoneNumberDto createEmptyData() {
         return new DetectionPhoneNumberDto(new ArrayList<>());
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public List<String> getDetectedItems() {
-        return detectedItems;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("검출 항목 : ").append(this.name).append("\n");
-        sb.append("검출 갯수 : ").append(this.count).append("\n");
-        sb.append("검출 데이터 :").append("\n");
-
-        for (int i = 0; i < this.detectedItems.size(); i++) {
-            sb.append("  -> ").append(this.detectedItems.get(i)).append("\n");
-        }
-
-        return sb.toString();
     }
 }
