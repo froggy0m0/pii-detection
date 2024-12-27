@@ -2,6 +2,7 @@ package com.froggy.piidetection.rrn;
 
 import static com.froggy.piidetection.common.constants.RegexPatternConsts.RNN_PATTERN;
 
+import com.froggy.piidetection.common.Detector;
 import com.froggy.piidetection.common.constants.GenderCode;
 import com.froggy.piidetection.common.dto.DetectionDto;
 import com.froggy.piidetection.rrn.dto.DetectionRRNDto;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DetectRRN {
+public class DetectRRN implements Detector<DetectionRRNDto> {
 
     // 입력된 텍스트에 유효한 주민등록번호(RRN)가 포함되어 있는지 확인
     public DetectionRRNDto detect(String inputText) {
