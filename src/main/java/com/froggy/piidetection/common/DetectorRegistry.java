@@ -1,5 +1,6 @@
 package com.froggy.piidetection.common;
 
+import com.froggy.piidetection.common.dto.DetectionDto;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
@@ -22,14 +23,13 @@ public class DetectorRegistry {
         detectorRegistry.initDetectors();
     }
 
-    public String execute(String inputText) {
-        StringBuilder sb = new StringBuilder();
-
+    public List<DetectionDto> execute(String inputText) {
+        List<DetectionDto> results = new ArrayList<>();
         for (Detector<?> detector : detectors) {
-            sb.append(detector.detect(inputText).toString());
+            results.add(detector.detect(inputText));
         }
 
-        return sb.toString();
+        return results;
     }
 
     /**

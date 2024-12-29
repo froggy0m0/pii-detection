@@ -1,7 +1,9 @@
 package com.froggy.piidetection;
 
 import com.froggy.piidetection.common.DetectorRegistry;
+import com.froggy.piidetection.common.dto.DetectionDto;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,15 +19,15 @@ public class DetectServlet extends HttpServlet {
         throws IOException, ServletException {
         String inputText = request.getParameter("inputText");
 
-        String result = detectPersonalInfo(inputText);
+        List<DetectionDto> results = detectPersonalInfo(inputText);
 
-        request.setAttribute("result", result);
+        request.setAttribute("results", results);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/detect-result.jsp");
         dispatcher.forward(request, response);
     }
 
     // 개인정보 검출 로직
-    private String detectPersonalInfo(String inputText) {
+    private List<DetectionDto> detectPersonalInfo(String inputText) {
         DetectorRegistry instance = DetectorRegistry.getInstance();
 
         return instance.execute(inputText);
