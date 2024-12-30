@@ -4,7 +4,6 @@ import static com.froggy.piidetection.common.constants.RegexPatternConsts.RNN_PA
 
 import com.froggy.piidetection.common.Detector;
 import com.froggy.piidetection.common.constants.GenderCode;
-import com.froggy.piidetection.common.dto.DetectionDto;
 import com.froggy.piidetection.rrn.dto.DetectionRRNDto;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

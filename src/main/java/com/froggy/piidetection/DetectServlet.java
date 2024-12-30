@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "DetectServlet", value = "/detect")
 public class DetectServlet extends HttpServlet {
 
-
     public void doPost(HttpServletRequest request, HttpServletResponse response)
         throws IOException, ServletException {
         String inputText = request.getParameter("inputText");
@@ -32,8 +31,4 @@ public class DetectServlet extends HttpServlet {
 
         return instance.execute(inputText);
     }
-
-
-
-
 }
