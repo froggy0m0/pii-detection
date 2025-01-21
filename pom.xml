@@ -12,18 +12,12 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.target>11</maven.compiler.target>
-    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
     <junit.version>5.9.2</junit.version>
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.1</version>
-      <scope>provided</scope>
-    </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
@@ -37,24 +31,22 @@
       <scope>test</scope>
     </dependency>
 
-
-    <dependency>
-      <groupId>org.eclipse.jetty</groupId>
-      <artifactId>jetty-server</artifactId>
-      <version>9.4.45.v20220203</version>
-    </dependency>
-
     <dependency>
       <groupId>org.mariadb.jdbc</groupId>
       <artifactId>mariadb-java-client</artifactId>
       <version>3.1.2</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.ibatis</groupId>
       <artifactId>ibatis-sqlmap</artifactId>
       <version>2.3.4.726</version>
+    </dependency>
+
+    <dependency>
+      <groupId>froggy.winterframework</groupId>
+      <artifactId>winterframework</artifactId>
+      <version>0.0.0</version>
     </dependency>
   </dependencies>
 

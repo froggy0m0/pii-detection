@@ -2,33 +2,36 @@ package com.froggy.piidetection;
 
 import com.froggy.piidetection.common.DetectorRegistry;
 import com.froggy.piidetection.common.dto.DetectionDto;
+import froggy.winterframework.stereotype.Controller;
+import froggy.winterframework.web.ModelAndView;
+import froggy.winterframework.web.bind.annotation.RequestMapping;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
+import java.util.Map;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "DetectServlet", value = "/detect")
-public class DetectServlet extends HttpServlet {
+@Controller(url="/detect")
+public class DetectServlet {
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping(urlPattern = "")
+    public ModelAndView process(HttpServletRequest request, HttpServletResponse response)
         throws IOException, ServletException {
         String inputText = request.getParameter("inputText");
-
         List<DetectionDto> results = detectPersonalInfo(inputText);
 
-        request.setAttribute("results", results);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/detect-result.jsp");
-        dispatcher.forward(request, response);
+        Map<String, Object> model = new HashMap<>();
+        model.put("results", results);
+
+        return new ModelAndView("/detect-result.jsp", model);
     }
 
     // 개인정보 검출 로직
     private List<DetectionDto> detectPersonalInfo(String inputText) {
         DetectorRegistry instance = DetectorRegistry.getInstance();
-
+        
         return instance.execute(inputText);
     }
 }
