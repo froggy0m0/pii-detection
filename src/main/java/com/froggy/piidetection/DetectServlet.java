@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller(url="/detect")
-public class DetectServlet {
+public class DefaultController {
 
     @RequestMapping(urlPattern = "")
     public ModelAndView process(HttpServletRequest request, HttpServletResponse response)
