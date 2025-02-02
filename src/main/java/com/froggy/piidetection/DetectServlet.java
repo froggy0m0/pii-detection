@@ -6,6 +6,7 @@ import froggy.winterframework.stereotype.Controller;
 import froggy.winterframework.web.ModelAndView;
 import froggy.winterframework.web.bind.annotation.RequestMapping;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,14 +14,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Controller(url="/detect")
-public class DefaultController {
+@Controller
+@RequestMapping(urlPattern="/detect")
+public class DetectServlet {
 
-    @RequestMapping(urlPattern = "")
+    @RequestMapping
     public ModelAndView process(HttpServletRequest request, HttpServletResponse response)
         throws IOException, ServletException {
         String inputText = request.getParameter("inputText");
-        List<DetectionDto> results = detectPersonalInfo(inputText);
+
+        List<DetectionDto> results = new ArrayList<>();
+        if (inputText != null && !inputText.isEmpty()) {
+            results = detectPersonalInfo(inputText);
+        }
 
         Map<String, Object> model = new HashMap<>();
         model.put("results", results);
