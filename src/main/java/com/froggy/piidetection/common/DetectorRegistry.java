@@ -1,6 +1,7 @@
 package com.froggy.piidetection.common;
 
 import com.froggy.piidetection.common.dto.DetectionDto;
+import froggy.winterframework.stereotype.Repository;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
@@ -9,18 +10,13 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class DetectorRegistry {
+    private final List<Detector<?>> detectors = new ArrayList<>();
 
-    private static final DetectorRegistry detectorRegistry = new DetectorRegistry();
-    private static final List<Detector<?>> detectors = new ArrayList<>();
-
-    public static DetectorRegistry getInstance() {
-        return detectorRegistry;
-    }
-
-    static {
-        // 인스턴스 최초 호출시점에 초기화진행
-        detectorRegistry.initDetectors();
+    public DetectorRegistry() {
+        // 인스턴스 생성 시점에 초기화진행
+        initDetectors();
     }
 
     public List<DetectionDto> execute(String inputText) {

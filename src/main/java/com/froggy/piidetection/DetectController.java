@@ -1,7 +1,7 @@
 package com.froggy.piidetection;
 
-import com.froggy.piidetection.common.DetectorRegistry;
 import com.froggy.piidetection.common.dto.DetectionDto;
+import froggy.winterframework.beans.factory.annotation.Autowired;
 import froggy.winterframework.stereotype.Controller;
 import froggy.winterframework.web.ModelAndView;
 import froggy.winterframework.web.bind.annotation.RequestMapping;
@@ -16,7 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping(urlPattern="/detect")
-public class DetectServlet {
+public class DetectController {
+
+    private DetectService detectService;
+
+    @Autowired
+    public DetectController(DetectService detectService) {
+        this.detectService = detectService;
+    }
 
     @RequestMapping
     public ModelAndView process(HttpServletRequest request, HttpServletResponse response)
@@ -25,7 +32,7 @@ public class DetectServlet {
 
         List<DetectionDto> results = new ArrayList<>();
         if (inputText != null && !inputText.isEmpty()) {
-            results = detectPersonalInfo(inputText);
+            results = detectService.detectPersonalInfo(inputText);
         }
 
         Map<String, Object> model = new HashMap<>();
@@ -34,10 +41,4 @@ public class DetectServlet {
         return new ModelAndView("/detect-result.jsp", model);
     }
 
-    // 개인정보 검출 로직
-    private List<DetectionDto> detectPersonalInfo(String inputText) {
-        DetectorRegistry instance = DetectorRegistry.getInstance();
-        
-        return instance.execute(inputText);
-    }
 }
