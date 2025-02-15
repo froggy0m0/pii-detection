@@ -5,14 +5,13 @@ import froggy.winterframework.beans.factory.annotation.Autowired;
 import froggy.winterframework.stereotype.Controller;
 import froggy.winterframework.web.ModelAndView;
 import froggy.winterframework.web.bind.annotation.RequestMapping;
+import froggy.winterframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping(urlPattern="/detect")
@@ -26,9 +25,8 @@ public class DetectController {
     }
 
     @RequestMapping
-    public ModelAndView process(HttpServletRequest request, HttpServletResponse response)
+    public ModelAndView process(@RequestParam("inputText") String inputText)
         throws IOException, ServletException {
-        String inputText = request.getParameter("inputText");
 
         List<DetectionDto> results = new ArrayList<>();
         if (inputText != null && !inputText.isEmpty()) {
