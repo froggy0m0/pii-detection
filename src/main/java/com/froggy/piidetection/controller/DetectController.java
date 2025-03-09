@@ -1,6 +1,7 @@
-package com.froggy.piidetection;
+package com.froggy.piidetection.controller;
 
 import com.froggy.piidetection.common.dto.DetectionDto;
+import com.froggy.piidetection.service.DetectService;
 import froggy.winterframework.beans.factory.annotation.Autowired;
 import froggy.winterframework.stereotype.Controller;
 import froggy.winterframework.web.ModelAndView;

@@ -1,4 +1,4 @@
-package com.froggy.piidetection.phonenumber.dto;
+package com.froggy.piidetection.detector.phonenumber.dto;
 
 import static com.froggy.piidetection.common.constants.DetectionItemNames.PHONE_NUMBER_NAME;
 

@@ -1,4 +1,4 @@
-package com.froggy.piidetection.rrn.dto;
+package com.froggy.piidetection.detector.rrn.dto;
 
 import static com.froggy.piidetection.common.constants.DetectionItemNames.RRN_NAME;
 

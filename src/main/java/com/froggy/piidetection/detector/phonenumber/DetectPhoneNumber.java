@@ -1,9 +1,9 @@
-package com.froggy.piidetection.phonenumber;
+package com.froggy.piidetection.detector.phonenumber;
 
-import static com.froggy.piidetection.common.constants.RegexPatternConsts.PHONE_NUMBER_PATTERN;
+import static com.froggy.piidetection.detector.rrn.constants.RegexPatternConsts.PHONE_NUMBER_PATTERN;
 
 import com.froggy.piidetection.common.Detector;
-import com.froggy.piidetection.phonenumber.dto.DetectionPhoneNumberDto;
+import com.froggy.piidetection.detector.phonenumber.dto.DetectionPhoneNumberDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;

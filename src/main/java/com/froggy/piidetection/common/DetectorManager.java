@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class DetectorRegistry {
+public class DetectorManager {
     private final List<Detector<?>> detectors = new ArrayList<>();
 
-    public DetectorRegistry() {
+    public DetectorManager() {
         // 인스턴스 생성 시점에 초기화진행
         initDetectors();
     }

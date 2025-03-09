@@ -1,4 +1,4 @@
-package com.froggy.piidetection.common.constants;
+package com.froggy.piidetection.detector.rrn.constants;
 
 public class GenderCode {
 

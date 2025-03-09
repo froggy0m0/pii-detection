@@ -1,10 +1,9 @@
-package com.froggy.piidetection.rrn;
-
-import static com.froggy.piidetection.common.constants.RegexPatternConsts.RNN_PATTERN;
+package com.froggy.piidetection.detector.rrn;
 
 import com.froggy.piidetection.common.Detector;
-import com.froggy.piidetection.common.constants.GenderCode;
-import com.froggy.piidetection.rrn.dto.DetectionRRNDto;
+import com.froggy.piidetection.detector.rrn.constants.GenderCode;
+import com.froggy.piidetection.detector.rrn.constants.RegexPatternConsts;
+import com.froggy.piidetection.detector.rrn.dto.DetectionRRNDto;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -35,7 +34,7 @@ public class DetectRRN implements Detector<DetectionRRNDto> {
 
     // 정규표현식에 매칭되는 문자열을 추출
     public List<String> extractMatchPattern(String inputText) {
-        Pattern pattern = Pattern.compile(RNN_PATTERN);
+        Pattern pattern = Pattern.compile(RegexPatternConsts.RNN_PATTERN);
         Matcher matcher = pattern.matcher(inputText);
 
         List<String> extractTexts = new ArrayList<>();
